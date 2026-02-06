@@ -335,7 +335,7 @@ const noodles = [
   {
     title: "mie benyek",
     img: "img/gambar mie no bg/mie6-600.webp",
-    detail: "5 menit. kalau kamu suka mie yang benyek.",
+    detail: "5 menit. buat kamu yang aneh.",
     time: 300,
   },
   {
@@ -410,8 +410,7 @@ function generateGridView() {
 
     // Tambahkan loading="lazy", srcset, dan sizes
     gridItem.innerHTML = `
-      <div class="grid-item-card ${
-        index === mieIndex ? "selected" : ""
+      <div class="grid-item-card ${index === mieIndex ? "selected" : ""
       }" onclick="selectMieFromGrid(${index})">
         <img 
           src="${mie.img}"
@@ -420,9 +419,8 @@ function generateGridView() {
           loading="lazy"
           alt="${mie.title}" 
           class="grid-item-img" />
-        <p class="pixelify-unresponsive grid-item-title text-white font-bold">${
-          mie.title
-        }</p>
+        <p class="pixelify-unresponsive grid-item-title text-white font-bold">${mie.title
+      }</p>
         <p class="pixelify grid-item-detail text-white">${mie.detail}</p>
       </div>
     `;
