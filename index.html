@@ -1,878 +1,790 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- my font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- my font 2 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap"
-      rel="stylesheet"
-    />
 
-    <style>
-      /* css untuk font */
-      .pixelify {
-        font-family: "Pixelify Sans", sans-serif;
-        font-optical-sizing: auto;
-        font-size: 4vw;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- my font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <!-- my font 2 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet" />
+  <!-- preload semua gambar -->
+  <link rel="preload" as="image" href="img/ani1.webp">
+  <link rel="preload" as="image" href="img/ani2.webp">
+  <link rel="preload" as="image" href="img/bg.webp">
+  <link rel="preload" as="image" href="img/btn1.webp">
+  <link rel="preload" as="image" href="img/btn1empt.webp">
+  <link rel="preload" as="image" href="img/nxt1.webp">
+  <link rel="preload" as="image" href="img/talk.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie1-300.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie1-600.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie2-300.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie2-600.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie3-300.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie3-600.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie4-300.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie4-600.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie5-300.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie5-600.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie6-300.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie6-600.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie7-300.webp">
+  <link rel="preload" as="image" href="img/gambar mie no bg/mie7-600.webp">
 
-      .pixelify-unresponsive {
-        font-family: "Pixelify Sans", sans-serif;
-        font-optical-sizing: auto;
-      }
+  <style>
+    /* css untuk font */
+    .pixelify {
+      font-family: "Pixelify Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-size: 4vw;
+    }
 
-      .jersey20 {
-        font-family: "Jersey 20", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-      }
+    .pixelify-unresponsive {
+      font-family: "Pixelify Sans", sans-serif;
+      font-optical-sizing: auto;
+    }
 
-      /* css untuk animasi talkview */
-      @keyframes blinkMove {
-        0%,
-        100% {
-          opacity: 0;
-          transform: translateY(0);
-        }
+    .jersey20 {
+      font-family: "Jersey 20", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
 
-        50% {
-          opacity: 1;
-          transform: translateY(5px);
-        }
-      }
+    /* css untuk animasi talkview */
+    @keyframes blinkMove {
 
-      .animate-talk {
-        animation: blinkMove 1.5s infinite ease-in-out;
-      }
-
-      .hidden-talk {
+      0%,
+      100% {
         opacity: 0;
-        animation: none !important;
+        transform: translateY(0);
       }
 
-      .page {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        display: flex; /* Bikin flex container */
-        justify-content: center; /* Tengah horizontal */
-        /* align-items: center; Tengah vertikal */
-        flex-direction: column; /* Susun konten dari atas ke bawah */
-
-        /* width: 100%; */
-        height: 100%; /* tambahkan ini biar tinggi penuh */
-        opacity: 0;
-        transform: translateX(100%);
-        transition: transform 0.6s ease, opacity 0.6s ease;
+      50% {
+        opacity: 1;
+        transform: translateY(5px);
       }
+    }
 
-      /* halaman yang sedang tampil */
-      .page.active {
+    .animate-talk {
+      animation: blinkMove 1.5s infinite ease-in-out;
+    }
+
+    .hidden-talk {
+      opacity: 0;
+      animation: none !important;
+    }
+
+    .page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      display: flex;
+      /* Bikin flex container */
+      justify-content: center;
+      /* Tengah horizontal */
+      /* align-items: center; Tengah vertikal */
+      flex-direction: column;
+      /* Susun konten dari atas ke bawah */
+
+      /* width: 100%; */
+      height: 100%;
+      /* tambahkan ini biar tinggi penuh */
+      opacity: 0;
+      transform: translateX(100%);
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+
+    /* halaman yang sedang tampil */
+    .page.active {
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 2;
+    }
+
+    /* halaman yang keluar ke kiri */
+    .page.exit-left {
+      transform: translateX(-100%);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* halaman yang keluar ke kanan */
+    .page.exit-right {
+      transform: translateX(100%);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* halaman yang masuk dari kiri */
+    .page.slide-from-left {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    /* biar hidden tetap sembunyi */
+    .page.hidden {
+      display: none;
+    }
+
+    /* Animasi keluar ke kiri (saat klik next) */
+    .slide-out-left {
+      animation: slideOutLeft 0.4s ease forwards;
+    }
+
+    @keyframes slideOutLeft {
+      from {
         opacity: 1;
         transform: translateX(0);
-        z-index: 2;
       }
 
-      /* halaman yang keluar ke kiri */
-      .page.exit-left {
-        transform: translateX(-100%);
+      to {
         opacity: 0;
-        z-index: 1;
+        transform: translateX(-100%);
       }
+    }
 
-      /* halaman yang keluar ke kanan */
-      .page.exit-right {
+    /* Animasi masuk dari kanan (saat klik next) */
+    .slide-in-right {
+      animation: slideInRight 0.4s ease forwards;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
         transform: translateX(100%);
-        opacity: 0;
-        z-index: 1;
       }
 
-      /* halaman yang masuk dari kiri */
-      .page.slide-from-left {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Animasi keluar ke kanan (saat klik prev) */
+    .slide-out-right {
+      animation: slideOutRight 0.4s ease forwards;
+    }
+
+    @keyframes slideOutRight {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    /* Animasi masuk dari kiri (saat klik prev) */
+    .slide-in-left {
+      animation: slideInLeft 0.4s ease forwards;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
         transform: translateX(-100%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .fade-out {
+      animation: fadeOut 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
         opacity: 0;
+        transform: scale(0.95);
       }
 
-      /* biar hidden tetap sembunyi */
-      .page.hidden {
-        display: none;
+      to {
+        opacity: 1;
+        transform: scale(1);
       }
+    }
 
-      /* Animasi keluar ke kiri (saat klik next) */
-      .slide-out-left {
-        animation: slideOutLeft 0.4s ease forwards;
-      }
-
-      @keyframes slideOutLeft {
-        from {
-          opacity: 1;
-          transform: translateX(0);
-        }
-        to {
-          opacity: 0;
-          transform: translateX(-100%);
-        }
-      }
-
-      /* Animasi masuk dari kanan (saat klik next) */
-      .slide-in-right {
-        animation: slideInRight 0.4s ease forwards;
-      }
-
-      @keyframes slideInRight {
-        from {
-          opacity: 0;
-          transform: translateX(100%);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      /* Animasi keluar ke kanan (saat klik prev) */
-      .slide-out-right {
-        animation: slideOutRight 0.4s ease forwards;
-      }
-
-      @keyframes slideOutRight {
-        from {
-          opacity: 1;
-          transform: translateX(0);
-        }
-        to {
-          opacity: 0;
-          transform: translateX(100%);
-        }
-      }
-
-      /* Animasi masuk dari kiri (saat klik prev) */
-      .slide-in-left {
-        animation: slideInLeft 0.4s ease forwards;
-      }
-
-      @keyframes slideInLeft {
-        from {
-          opacity: 0;
-          transform: translateX(-100%);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      .fade-in {
-        opacity: 0;
-        animation: fadeIn 0.5s ease forwards;
-      }
-
-      .fade-out {
-        animation: fadeOut 0.5s ease forwards;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      @keyframes fadeOut {
-        from {
-          opacity: 1;
-          transform: scale(1);
-        }
-        to {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-      }
-
-      /* Responsive styles untuk tablet dan desktop */
-      /* Tablet: 768px ke atas */
-      @media (min-width: 768px) {
-        /* Container utama dengan max-width agar tidak terlalu lebar */
-        #game-container {
-          max-width: 600px;
-          margin: 0 auto;
-          padding: 1rem;
-          transform: scale(0.6);
-          transform-origin: center center;
-          overflow: visible;
-        }
-
-        /* Page spacing untuk tablet */
-        .page {
-          padding: 1rem 0;
-          overflow: visible;
-        }
-
-        /* Font size untuk pixelify agar tidak terlalu besar di tablet */
-        .pixelify {
-          font-size: 2.5vw;
-        }
-
-        /* Start page adjustments */
-        #startPage img {
-          max-width: 400px;
-        }
-
-        /* Button sizes untuk tablet */
-        img.w-45 {
-          width: 180px !important;
-        }
-
-        button.w-40 {
-          width: 160px !important;
-        }
-
-        /* Halaman detail (hal3) adjustments */
-        #hal3 img.w-60 {
-          width: 280px;
-        }
-
-        /* Timer page adjustments */
-        #hal4 img.w-60 {
-          width: 280px;
-        }
-
-        #hal4 h1 {
-          font-size: 6rem;
-        }
-
-        /* Text pada halaman talk untuk tablet */
-        #textHal1,
-        #textHal2 {
-          font-size: 1.25rem;
-        }
-
-        /* Pastikan tombol next terlihat */
-        #nextBtnHal1,
-        #nextBtnHal2 {
-          z-index: 20;
-          position: relative;
-        }
-      }
-
-      /* Desktop/Laptop: 1024px ke atas */
-      @media (min-width: 1024px) {
-        /* Container utama dengan max-width yang lebih besar */
-        #game-container {
-          max-width: 700px;
-          padding: 1.5rem;
-          transform: scale(0.6);
-          transform-origin: center center;
-          overflow: visible;
-        }
-
-        /* Page spacing untuk desktop */
-        .page {
-          padding: 1.5rem 0;
-          overflow: visible;
-        }
-
-        /* Font size untuk desktop */
-        .pixelify {
-          font-size: 2vw;
-        }
-
-        /* Start page */
-        #startPage img {
-          max-width: 450px;
-        }
-
-        #startPage .pixelify-unresponsive {
-          font-size: 1.5rem;
-        }
-
-        /* Button sizes untuk desktop */
-        img.w-45 {
-          width: 200px !important;
-        }
-
-        button.w-40 {
-          width: 180px !important;
-        }
-
-        /* Halaman detail (hal3) */
-        #hal3 img.w-60 {
-          width: 320px;
-        }
-
-        #hal3 #title {
-          font-size: 1.75rem;
-        }
-
-        /* Timer page */
-        #hal4 img.w-60 {
-          width: 320px;
-        }
-
-        #hal4 h1 {
-          font-size: 7rem;
-        }
-
-        #hal4 .pixelify {
-          font-size: 1.5rem;
-        }
-
-        /* Text pada halaman talk */
-        #textHal1,
-        #textHal2 {
-          font-size: 1.5rem;
-          max-width: 80%;
-        }
-
-        /* Skip dan Back button positioning */
-        #skipBtn,
-        #backBtn {
-          font-size: 1rem;
-          padding: 0.75rem 1.5rem;
-        }
-
-        /* Detail text pada hal3 */
-        #hal3 #detail {
-          font-size: 1.25rem;
-        }
-
-        /* Pastikan tombol next terlihat */
-        #nextBtnHal1,
-        #nextBtnHal2 {
-          z-index: 20;
-          position: relative;
-        }
-      }
-
-      /* Large Desktop: 1440px ke atas */
-      @media (min-width: 1440px) {
-        #game-container {
-          max-width: 800px;
-          padding: 2rem;
-          transform: scale(0.6);
-          transform-origin: center center;
-          overflow: visible;
-        }
-
-        .page {
-          padding: 2rem 0;
-          overflow: visible;
-        }
-
-        .pixelify {
-          font-size: 1.8vw;
-        }
-
-        #startPage img {
-          max-width: 500px;
-        }
-
-        #hal3 img.w-60,
-        #hal4 img.w-60 {
-          width: 360px;
-        }
-
-        #hal4 h1 {
-          font-size: 8rem;
-        }
-
-        #textHal1,
-        #textHal2 {
-          font-size: 1.75rem;
-        }
-      }
-
-      /* CSS untuk Grid View */
-      #gridView {
-        overflow-x: hidden;
-        overflow-y: auto;
-        scroll-behavior: smooth; /* Smooth scrolling for programmatic scroll */
-        -webkit-overflow-scrolling: touch; /* Momentum scrolling for iOS */
-        height: calc(100% - 6rem);
-        margin-top: 2rem;
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        padding-top: 1.2rem; /* Space for hover effect */
-        /* padding-bottom removed, moved to .grid */
-        will-change: transform; /* Hint to browser for GPU acceleration */
-      }
-
-      #gridView.hidden {
-        display: none !important;
-      }
-
-      #singleView.hidden {
-        display: none !important;
-      }
-
-      #gridView:not(.hidden) {
-        display: flex;
-      }
-
-      #singleView:not(.hidden) {
-        display: flex;
-      }
-
-      #gridView .grid {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        width: 100% !important;
-        gap: 0.8rem;
-        margin: 0;
-        padding: 0;
-        padding-bottom: 8rem; /* Extra space at bottom of content */
-        grid-auto-flow: row;
-      }
-
-      .grid-item {
-        transition: transform 0.2s ease, opacity 0.2s ease;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      .grid-item:hover {
-        transform: scale(1.05);
-      }
-
-      .grid-item.selected {
+    @keyframes fadeOut {
+      from {
         opacity: 1;
         transform: scale(1);
       }
 
-      .grid-item.selected:hover {
-        transform: scale(1.05);
+      to {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* Responsive styles untuk tablet dan desktop */
+    /* Tablet: 768px ke atas */
+    @media (min-width: 768px) {
+
+      /* Container utama dengan max-width agar tidak terlalu lebar */
+      #game-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 1rem;
+        transform: scale(0.6);
+        transform-origin: center center;
+        overflow: visible;
       }
 
-      /* CSS untuk Grid View - Mobile First */
+      /* Page spacing untuk tablet */
+      .page {
+        padding: 1rem 0;
+        overflow: visible;
+      }
+
+      /* Font size untuk pixelify agar tidak terlalu besar di tablet */
+      .pixelify {
+        font-size: 2.5vw;
+      }
+
+      /* Start page adjustments */
+      #startPage img {
+        max-width: 400px;
+      }
+
+      /* Button sizes untuk tablet */
+      img.w-45 {
+        width: 180px !important;
+      }
+
+      button.w-40 {
+        width: 160px !important;
+      }
+
+      /* Halaman detail (hal3) adjustments */
+      #hal3 img.w-60 {
+        width: 280px;
+      }
+
+      /* Timer page adjustments */
+      #hal4 img.w-60 {
+        width: 280px;
+      }
+
+      #hal4 h1 {
+        font-size: 6rem;
+      }
+
+      /* Text pada halaman talk untuk tablet */
+      #textHal1,
+      #textHal2 {
+        font-size: 1.25rem;
+      }
+
+      /* Pastikan tombol next terlihat */
+      #nextBtnHal1,
+      #nextBtnHal2 {
+        z-index: 20;
+        position: relative;
+      }
+    }
+
+    /* Desktop/Laptop: 1024px ke atas */
+    @media (min-width: 1024px) {
+
+      /* Container utama dengan max-width yang lebih besar */
+      #game-container {
+        max-width: 700px;
+        padding: 1.5rem;
+        transform: scale(0.6);
+        transform-origin: center center;
+        overflow: visible;
+      }
+
+      /* Page spacing untuk desktop */
+      .page {
+        padding: 1.5rem 0;
+        overflow: visible;
+      }
+
+      /* Font size untuk desktop */
+      .pixelify {
+        font-size: 2vw;
+      }
+
+      /* Start page */
+      #startPage img {
+        max-width: 450px;
+      }
+
+      #startPage .pixelify-unresponsive {
+        font-size: 1.5rem;
+      }
+
+      /* Button sizes untuk desktop */
+      img.w-45 {
+        width: 200px !important;
+      }
+
+      button.w-40 {
+        width: 180px !important;
+      }
+
+      /* Halaman detail (hal3) */
+      #hal3 img.w-60 {
+        width: 320px;
+      }
+
+      #hal3 #title {
+        font-size: 1.75rem;
+      }
+
+      /* Timer page */
+      #hal4 img.w-60 {
+        width: 320px;
+      }
+
+      #hal4 h1 {
+        font-size: 7rem;
+      }
+
+      #hal4 .pixelify {
+        font-size: 1.5rem;
+      }
+
+      /* Text pada halaman talk */
+      #textHal1,
+      #textHal2 {
+        font-size: 1.5rem;
+        max-width: 80%;
+      }
+
+      /* Skip dan Back button positioning */
+      #skipBtn,
+      #backBtn {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+      }
+
+      /* Detail text pada hal3 */
+      #hal3 #detail {
+        font-size: 1.25rem;
+      }
+
+      /* Pastikan tombol next terlihat */
+      #nextBtnHal1,
+      #nextBtnHal2 {
+        z-index: 20;
+        position: relative;
+      }
+    }
+
+    /* Large Desktop: 1440px ke atas */
+    @media (min-width: 1440px) {
+      #game-container {
+        max-width: 800px;
+        padding: 2rem;
+        transform: scale(0.6);
+        transform-origin: center center;
+        overflow: visible;
+      }
+
+      .page {
+        padding: 2rem 0;
+        overflow: visible;
+      }
+
+      .pixelify {
+        font-size: 1.8vw;
+      }
+
+      #startPage img {
+        max-width: 500px;
+      }
+
+      #hal3 img.w-60,
+      #hal4 img.w-60 {
+        width: 360px;
+      }
+
+      #hal4 h1 {
+        font-size: 8rem;
+      }
+
+      #textHal1,
+      #textHal2 {
+        font-size: 1.75rem;
+      }
+    }
+
+    /* CSS untuk Grid View */
+    #gridView {
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      /* Smooth scrolling for programmatic scroll */
+      -webkit-overflow-scrolling: touch;
+      /* Momentum scrolling for iOS */
+      height: calc(100% - 6rem);
+      margin-top: 2rem;
+      padding-left: 0.8rem;
+      padding-right: 0.8rem;
+      padding-top: 1.2rem;
+      /* Space for hover effect */
+      /* padding-bottom removed, moved to .grid */
+      will-change: transform;
+      /* Hint to browser for GPU acceleration */
+    }
+
+    #gridView.hidden {
+      display: none !important;
+    }
+
+    #singleView.hidden {
+      display: none !important;
+    }
+
+    #gridView:not(.hidden) {
+      display: flex;
+    }
+
+    #singleView:not(.hidden) {
+      display: flex;
+    }
+
+    #gridView .grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      width: 100% !important;
+      gap: 0.8rem;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 8rem;
+      /* Extra space at bottom of content */
+      grid-auto-flow: row;
+    }
+
+    .grid-item {
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .grid-item:hover {
+      transform: scale(1.05);
+    }
+
+    .grid-item.selected {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .grid-item.selected:hover {
+      transform: scale(1.05);
+    }
+
+    /* CSS untuk Grid View - Mobile First */
+    .grid-item-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: none;
+      /* disabled for performance */
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      min-height: 150px;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .grid-item-card:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .grid-item-card.selected {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .grid-item-card.selected:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .grid-item-img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      margin-bottom: 0.4rem;
+      object-fit: contain;
+    }
+
+    .grid-item-title {
+      font-size: 3.5vw;
+      text-align: center;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+      font-weight: bold;
+    }
+
+    .grid-item-detail {
+      font-size: 0.7rem;
+      text-align: center;
+      opacity: 0.9;
+      line-height: 1.2;
+    }
+
+    /* Tablet dan Desktop - lebih besar */
+    @media (min-width: 640px) {
       .grid-item-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: none; /* disabled for performance */
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        padding: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        width: 100%;
-        min-height: 150px;
-        justify-content: space-between;
-        box-sizing: border-box;
-      }
-
-      .grid-item-card:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.5);
-      }
-
-      .grid-item-card.selected {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.4);
-      }
-
-      .grid-item-card.selected:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.6);
+        padding: 0.75rem;
+        min-height: 180px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        /* Stronger blur for stronger devices */
       }
 
       .grid-item-img {
-        width: 100%;
-        max-width: 150px;
-        height: auto;
-        margin-bottom: 0.4rem;
-        object-fit: contain;
+        max-width: 160px;
+        margin-bottom: 0.5rem;
       }
 
       .grid-item-title {
-        font-size: 3.5vw;
-        text-align: center;
-        margin-bottom: 0.2rem;
-        line-height: 1.2;
-        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
       }
 
       .grid-item-detail {
-        font-size: 0.7rem;
-        text-align: center;
-        opacity: 0.9;
-        line-height: 1.2;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      #gridView {
+        padding: 1rem 2rem;
       }
 
-      /* Tablet dan Desktop - lebih besar */
-      @media (min-width: 640px) {
-        .grid-item-card {
-          padding: 0.75rem;
-          min-height: 180px;
-          border-radius: 12px;
-          backdrop-filter: blur(10px); /* Stronger blur for stronger devices */
-        }
-
-        .grid-item-img {
-          max-width: 160px;
-          margin-bottom: 0.5rem;
-        }
-
-        .grid-item-title {
-          font-size: 1.2rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .grid-item-detail {
-          font-size: 0.8rem;
-        }
+      #gridView .grid {
+        gap: 1rem;
+        max-width: 600px;
       }
 
-      @media (min-width: 768px) {
-        #gridView {
-          padding: 1rem 2rem;
-        }
-
-        #gridView .grid {
-          gap: 1rem;
-          max-width: 600px;
-        }
-
-        .grid-item-card {
-          padding: 1rem;
-          min-height: 200px;
-        }
-
-        .grid-item-img {
-          max-width: 180px;
-        }
-
-        .grid-item-title {
-          font-size: 1.3rem;
-        }
-
-        .grid-item-detail {
-          font-size: 0.9rem;
-        }
+      .grid-item-card {
+        padding: 1rem;
+        min-height: 200px;
       }
-    </style>
-    <!-- tailwind css -->
-    <link href="./output.css" rel="stylesheet" />
-    <title>MieTime</title>
-  </head>
-  <body
-    class="flex justify-center min-h-screen items-center bg-gradient-to-b from-[#ff9433] to-[#ffb640]"
-  >
-    <!-- <button
+
+      .grid-item-img {
+        max-width: 180px;
+      }
+
+      .grid-item-title {
+        font-size: 1.3rem;
+      }
+
+      .grid-item-detail {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+  <!-- tailwind css -->
+  <link href="./output.css" rel="stylesheet" />
+  <title>MieTime</title>
+</head>
+
+<body class="flex justify-center min-h-screen items-center bg-gradient-to-b from-[#ff9433] to-[#ffb640]">
+  <!-- <button
       id="toggleBGM"
       class="fixed top-5 left-10 bg-amber-600 text-white px-3 py-2 rounded-xl z-99"
     >
       🔇
     </button> -->
-    <audio id="bgm" loop></audio>
+  <audio id="bgm" loop></audio>
 
-    <div id="game-container" class="relative overflow-hidden w-full h-screen">
-      <!-- halaman start -->
-      <div id="startPage" class="page active mx-5">
-        <div class="pb-8">
-          <div class="w-full">
-            <img
-              src="img/Mie time title 2.png"
-              alt=""
-              class="w-[70%] mx-auto mb-5"
-            />
-          </div>
-          <div class="mx-5">
-            <p
-              class="pixelify-unresponsive text-white text-center text-lg font-bold"
-            >
-              masak mie apa hari ini ??
-            </p>
-          </div>
+  <div id="game-container" class="relative overflow-hidden w-full h-screen">
+    <!-- halaman start -->
+    <div id="startPage" class="page active mx-5">
+      <div class="pb-8">
+        <div class="w-full">
+          <img src="img/Mie time title 2.png" alt="" class="w-[70%] mx-auto mb-5" />
         </div>
-        <div class="flex justify-center">
-          <button onclick="next0()" class="relative">
-            <img src="img/start.png" alt="button-bg" class="w-45 h-auto" />
-            <span
-              class="pixelify absolute inset-0 flex items-center justify-center text-white font-bold"
-            >
-              START
-            </span>
+        <div class="mx-5">
+          <p class="pixelify-unresponsive text-white text-center text-lg font-bold">
+            masak mie apa hari ini ??
+          </p>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <button onclick="next0()" class="relative">
+          <img src="img/start.png" alt="button-bg" class="w-45 h-auto" />
+          <span class="pixelify absolute inset-0 flex items-center justify-center text-white font-bold">
+            START
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- halaman 1 -->
+    <div id="hal1" class="page hidden mx-5">
+      <div class="relative">
+        <img src="img/ani2.webp" loading="lazy" alt="talk1" class="z-0 w-full h-auto" />
+        <div class="absolute inset-0 flex items-center justify-center pt-[55%]">
+          <p id="textHal1" class="pixelify text-white text-center mx-10 z-10 leading-snug">
+            -
+          </p>
+        </div>
+        <div class="absolute inset-0 z-10 flex items-end justify-end mb-7 mr-7">
+          <img id="talkview" src="img/talk1.png" loading="lazy" alt="talkview" class="w-8 animate-talk hidden-talk" />
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button id="nextBtnHal1" onclick="next1()" class="relative invisible">
+          <img src="img/btn2empt.png" loading="lazy" alt="button-bg" class="w-45 h-auto" />
+          <span class="pixelify absolute inset-0 flex items-center justify-center text-white font-bold">
+            NEXT
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- halaman 2 -->
+    <div id="hal2" class="page hidden mx-5">
+      <div class="relative">
+        <img src="img/ani1.webp" loading="lazy" alt="talk1" class="z-0 w-full h-auto" />
+        <div class="absolute inset-0 flex items-center justify-center pt-[55%]">
+          <p id="textHal2" class="pixelify text-white text-center mx-10 z-10 leading-snug">
+            -
+          </p>
+        </div>
+        <div class="absolute inset-0 z-10 flex items-end justify-end mb-7 mr-7">
+          <img id="talkview2" src="img/talk1.png" loading="lazy" alt="talkview" class="w-8 animate-talk hidden-talk" />
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button id="nextBtnHal2" onclick="next2()" class="relative invisible">
+          <img src="img/btn2empt.png" loading="lazy" alt="button-bg" class="w-45 h-auto" />
+          <span class="pixelify absolute inset-0 flex items-center justify-center text-white font-bold">
+            NEXT
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- halaman 3 -->
+    <div id="hal3" class="page hidden w-full relative">
+      <!-- Tampilan Single (default) -->
+      <div id="singleView" class="flex flex-col justify-center items-center" style="display: flex">
+        <div class="flex items-center">
+          <img id="noodleImg" src="img/noodle1.png" loading="lazy" alt="noodle" class="w-60 h-auto" />
+        </div>
+
+        <div class="mx-8 flex items-center justify-center relative mb-3">
+          <div class="absolute inset-0 flex flex-col justify-center">
+            <p id="title" class="pixelify-unresponsive text-xl font-bold text-white text-center">
+              mie kuah biasa
+            </p>
+            <p id="detail" class="pixelify text-white text-center mx-6">-</p>
+          </div>
+          <img src="img/detail.png" loading="lazy" alt="detail" />
+        </div>
+
+        <div class="flex justify-center w-full">
+          <button id="prevBtn">
+            <img src="img/prev.png" loading="lazy" alt="prev"
+              class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain" />
+          </button>
+          <button onclick="startTimer()" class="relative w-40 h-auto">
+            <img src="img/start.png" loading="lazy" alt="start" />
+            <span class="pixelify absolute inset-0 flex items-center justify-center text-white font-bold">SELECT</span>
+          </button>
+          <button id="nextBtn">
+            <img src="img/next.png" loading="lazy" alt="next"
+              class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain" />
           </button>
         </div>
       </div>
-      <!-- halaman 1 -->
-      <div id="hal1" class="page hidden mx-5">
-        <div class="relative">
-          <img
-            src="img/ani2.png"
-            loading="lazy"
-            alt="talk1"
-            class="z-0 w-full h-auto"
-          />
-          <div
-            class="absolute inset-0 flex items-center justify-center pt-[55%]"
-          >
-            <p
-              id="textHal1"
-              class="pixelify text-white text-center mx-10 z-10 leading-snug"
-            >
-              -
-            </p>
-          </div>
-          <div
-            class="absolute inset-0 z-10 flex items-end justify-end mb-7 mr-7"
-          >
-            <img
-              id="talkview"
-              src="img/talk1.png"
-              loading="lazy"
-              alt="talkview"
-              class="w-8 animate-talk hidden-talk"
-            />
-          </div>
-        </div>
-        <div class="flex justify-end">
-          <button id="nextBtnHal1" onclick="next1()" class="relative invisible">
-            <img
-              src="img/btn2empt.png"
-              loading="lazy"
-              alt="button-bg"
-              class="w-45 h-auto"
-            />
-            <span
-              class="pixelify absolute inset-0 flex items-center justify-center text-white font-bold"
-            >
-              NEXT
-            </span>
-          </button>
+
+      <!-- Tampilan Grid (alternatif) -->
+      <div id="gridView" class="hidden w-full py-2" style="display: none">
+        <div class="grid grid-cols-2 gap-2 w-full" style="display: grid">
+          <!-- Grid items akan di-generate oleh JavaScript -->
         </div>
       </div>
-      <!-- halaman 2 -->
-      <div id="hal2" class="page hidden mx-5">
-        <div class="relative">
-          <img
-            src="img/ani1.png"
-            loading="lazy"
-            alt="talk1"
-            class="z-0 w-full h-auto"
-          />
-          <div
-            class="absolute inset-0 flex items-center justify-center pt-[55%]"
-          >
-            <p
-              id="textHal2"
-              class="pixelify text-white text-center mx-10 z-10 leading-snug"
-            >
-              -
-            </p>
-          </div>
-          <div
-            class="absolute inset-0 z-10 flex items-end justify-end mb-7 mr-7"
-          >
-            <img
-              id="talkview2"
-              src="img/talk1.png"
-              loading="lazy"
-              alt="talkview"
-              class="w-8 animate-talk hidden-talk"
-            />
-          </div>
-        </div>
-        <div class="flex justify-end">
-          <button id="nextBtnHal2" onclick="next2()" class="relative invisible">
-            <img
-              src="img/btn2empt.png"
-              loading="lazy"
-              alt="button-bg"
-              class="w-45 h-auto"
-            />
-            <span
-              class="pixelify absolute inset-0 flex items-center justify-center text-white font-bold"
-            >
-              NEXT
-            </span>
-          </button>
-        </div>
-      </div>
-      <!-- halaman 3 -->
-      <div id="hal3" class="page hidden w-full relative">
-        <!-- Tampilan Single (default) -->
-        <div
-          id="singleView"
-          class="flex flex-col justify-center items-center"
-          style="display: flex"
-        >
-          <div class="flex items-center">
-            <img
-              id="noodleImg"
-              src="img/noodle1.png"
-              loading="lazy"
-              alt="noodle"
-              class="w-60 h-auto"
-            />
-          </div>
-
-          <div class="mx-8 flex items-center justify-center relative mb-3">
-            <div class="absolute inset-0 flex flex-col justify-center">
-              <p
-                id="title"
-                class="pixelify-unresponsive text-xl font-bold text-white text-center"
-              >
-                mie kuah biasa
-              </p>
-              <p id="detail" class="pixelify text-white text-center mx-6">-</p>
-            </div>
-            <img src="img/detail.png" loading="lazy" alt="detail" />
-          </div>
-
-          <div class="flex justify-center w-full">
-            <button id="prevBtn">
-              <img
-                src="img/prev.png"
-                loading="lazy"
-                alt="prev"
-                class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain"
-              />
-            </button>
-            <button onclick="startTimer()" class="relative w-40 h-auto">
-              <img src="img/start.png" loading="lazy" alt="start" />
-              <span
-                class="pixelify absolute inset-0 flex items-center justify-center text-white font-bold"
-                >SELECT</span
-              >
-            </button>
-            <button id="nextBtn">
-              <img
-                src="img/next.png"
-                loading="lazy"
-                alt="next"
-                class="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain"
-              />
-            </button>
-          </div>
-        </div>
-
-        <!-- Tampilan Grid (alternatif) -->
-        <div id="gridView" class="hidden w-full py-2" style="display: none">
-          <div class="grid grid-cols-2 gap-2 w-full" style="display: grid">
-            <!-- Grid items akan di-generate oleh JavaScript -->
-          </div>
-        </div>
-      </div>
-      <!-- halaman 4 -->
-      <div id="hal4" class="page hidden mx-5">
-        <!-- <button
+    </div>
+    <!-- halaman 4 -->
+    <div id="hal4" class="page hidden mx-5">
+      <!-- <button
           id="menuBtn"
           class="pixelify fixed top-5 right-5 bg-amber-600 text-white px-3 py-2 rounded-xl"
         >
           menu
         </button> -->
-        <div class="flex flex-col justify-center items-center">
-          <img
-            id="timerNoodleImg"
-            src="img/noodle1.png"
-            loading="lazy"
-            alt="cooking"
-            class="w-60 h-auto"
-          />
-          <p class="pixelify text-center text-white">
-            mie kamu akan masak dalam :
+      <div class="flex flex-col justify-center items-center">
+        <img id="timerNoodleImg" src="img/noodle1.png" loading="lazy" alt="cooking" class="w-60 h-auto" />
+        <p class="pixelify text-center text-white">
+          mie kamu akan masak dalam :
+        </p>
+        <h1 class="jersey20 text-8xl text-white text-center">00:00</h1>
+      </div>
+      <div class="flex items-center justify-center">
+        <button id="resetBtn" class="relative w-40 h-auto">
+          <img src="img/start.png" loading="lazy" alt="pause" />
+          <p class="pixelify absolute inset-0 flex items-center justify-center z-10 text-white">
+            RESET
           </p>
-          <h1 class="jersey20 text-8xl text-white text-center">00:00</h1>
-        </div>
-        <div class="flex items-center justify-center">
-          <button id="resetBtn" class="relative w-40 h-auto">
-            <img src="img/start.png" loading="lazy" alt="pause" />
-            <p
-              class="pixelify absolute inset-0 flex items-center justify-center z-10 text-white"
-            >
-              RESET
-            </p>
-          </button>
-          <button id="pauseBtn" class="relative w-40 h-auto">
-            <img src="img/start.png" loading="lazy" alt="pause" />
-            <p
-              class="pixelify absolute z-10 inset-0 flex items-center justify-center text-white"
-            >
-              PAUSE
-            </p>
-          </button>
-        </div>
+        </button>
+        <button id="pauseBtn" class="relative w-40 h-auto">
+          <img src="img/start.png" loading="lazy" alt="pause" />
+          <p class="pixelify absolute z-10 inset-0 flex items-center justify-center text-white">
+            PAUSE
+          </p>
+        </button>
       </div>
     </div>
+  </div>
 
-    <button
-      id="skipBtn"
-      onclick="skipIntro()"
-      style="z-index: 9999; pointer-events: auto; left: auto; right: 2.5rem"
-      class="hidden fixed top-5 bg-white/20 hover:bg-white/50 hover:scale-105 backdrop-blur-sm text-white px-4 py-2 rounded-xl pixelify border border-white/30 transition-all duration-300 cursor-pointer shadow-lg"
-    >
-      SKIP >>
-    </button>
+  <button id="skipBtn" onclick="skipIntro()" style="z-index: 9999; pointer-events: auto; left: auto; right: 2.5rem"
+    class="hidden fixed top-5 bg-white/20 hover:bg-white/50 hover:scale-105 backdrop-blur-sm text-white px-4 py-2 rounded-xl pixelify border border-white/30 transition-all duration-300 cursor-pointer shadow-lg">
+    SKIP >>
+  </button>
 
-    <button
-      id="backBtn"
-      onclick="goBack()"
-      style="z-index: 9999; pointer-events: auto; left: 2.5rem; right: auto"
-      class="hidden fixed top-5 bg-white/20 hover:bg-white/50 hover:scale-105 backdrop-blur-sm text-white px-4 py-2 rounded-xl pixelify border border-white/30 transition-all duration-300 cursor-pointer shadow-lg"
-    >
-      << BACK
-    </button>
+  <button id="backBtn" onclick="goBack()" style="z-index: 9999; pointer-events: auto; left: 2.5rem; right: auto"
+    class="hidden fixed top-5 bg-white/20 hover:bg-white/50 hover:scale-105 backdrop-blur-sm text-white px-4 py-2 rounded-xl pixelify border border-white/30 transition-all duration-300 cursor-pointer shadow-lg">
+    << BACK </button>
 
-    <button
-      id="toggleViewBtn"
-      onclick="toggleMenuView()"
-      style="z-index: 9999; pointer-events: auto; left: auto; right: 2.5rem"
-      class="hidden fixed top-5 bg-white/20 hover:bg-white/50 hover:scale-105 backdrop-blur-sm text-white w-10 h-10 flex items-center justify-center rounded-xl pixelify border border-white/30 transition-all duration-300 cursor-pointer shadow-lg"
-    >
-      <!-- Icon Grid (Tampil saat mode Single, klik untuk ke Grid) -->
-      <svg
-        id="iconGrid"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        style="width: 25px; height: 25px"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
-        />
-      </svg>
-      <svg
-        id="iconSingle"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="hidden"
-        style="width: 25px; height: 25px"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3.75 6A2.25 2.25 0 0 1 6 3.75h12a2.25 2.25 0 0 1 2.25 2.25v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h12a2.25 2.25 0 0 1 2.25 2.25v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25v-2.25Z"
-        />
-      </svg>
-    </button>
-  </body>
-  <!-- javascript -->
-  <script src="script.js"></script>
+      <button id="toggleViewBtn" onclick="toggleMenuView()"
+        style="z-index: 9999; pointer-events: auto; left: auto; right: 2.5rem"
+        class="hidden fixed top-5 bg-white/20 hover:bg-white/50 hover:scale-105 backdrop-blur-sm text-white w-10 h-10 flex items-center justify-center rounded-xl pixelify border border-white/30 transition-all duration-300 cursor-pointer shadow-lg">
+        <!-- Icon Grid (Tampil saat mode Single, klik untuk ke Grid) -->
+        <svg id="iconGrid" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" style="width: 25px; height: 25px">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+        </svg>
+        <svg id="iconSingle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="hidden" style="width: 25px; height: 25px">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3.75 6A2.25 2.25 0 0 1 6 3.75h12a2.25 2.25 0 0 1 2.25 2.25v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h12a2.25 2.25 0 0 1 2.25 2.25v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25v-2.25Z" />
+        </svg>
+      </button>
+</body>
+<!-- javascript -->
+<script src="script.js"></script>
+
 </html>
